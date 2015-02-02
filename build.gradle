@@ -1,0 +1,69 @@
+
+apply plugin: 'groovy'
+
+buildscript {
+    repositories {
+        maven() {
+            url "http://nexus.corp.appnexus.com/nexus/content/repositories/releases"
+        }
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath group: 'com.appnexus.bsg', name: 'bsg-build', version: '1.0.0'
+
+    }
+}
+
+repositories {
+    maven() {
+        url "http://nexus.corp.appnexus.com/nexus/content/repositories/releases"
+    }
+    mavenCentral()
+
+    maven { url "https://clojars.org/repo/" }
+
+    mavenLocal()
+}
+
+def groovyVersion = '2.2.2'
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+dependencies {
+
+    compile group: 'org.apache.commons', name:'commons-lang3', version:'3.0'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: groovyVersion
+    compile group: 'org.jdbi', name: 'jdbi', version: '2.53'
+    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '8.0.18'
+
+    compile group: 'postgresql', name: 'postgresql', version: '9.1-901.jdbc4'
+
+    // for output logger messages
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+
+    // testing
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile group: 'cglib', name: 'cglib-nodep', version: '3.1'
+    testCompile group: 'org.objenesis', name: 'objenesis', version: '1.4'
+
+}
+
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+
+
+
+
+

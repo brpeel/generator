@@ -1,23 +1,18 @@
 package com.generator
 
+import org.joda.time.DateTime
 import org.skife.jdbi.v2.StatementContext
 import org.skife.jdbi.v2.tweak.ResultSetMapper
 
-import java.lang.reflect.ParameterizedType
 import java.sql.ResultSet
 import java.sql.ResultSetMetaData
 import java.sql.SQLException
 import java.sql.Timestamp
 
-/**
- * Created by bpeel on 12/12/14.
- */
 public abstract class BaseMapper<T> implements ResultSetMapper<T> {
 
 
     T map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-
-        def object = newObject();
 
         Map data = parseRow(r)
 
@@ -49,6 +44,5 @@ public abstract class BaseMapper<T> implements ResultSetMapper<T> {
         return new DateTime(value.getTime())
     }
 
-    protected abstract T newObject()
-    protected abstract T map(Map data, T object)
+    protected abstract T map(Map data)
 }

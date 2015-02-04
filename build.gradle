@@ -37,6 +37,8 @@ tasks.withType(JavaCompile) {
 
 dependencies {
 
+    compile group: 'com.appnexus.bsg', name: 'bsg-integration-dropwizard',  version: '1.1.2'
+
     compile group: 'org.apache.commons', name:'commons-lang3', version:'3.0'
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: groovyVersion
     compile group: 'org.jdbi', name: 'jdbi', version: '2.53'

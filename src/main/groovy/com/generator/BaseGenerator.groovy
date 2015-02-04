@@ -1,7 +1,7 @@
 package com.generator
 
-import org.apache.log4j.Logger
-import org.apache.log4j.spi.LoggerFactory
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import java.lang.reflect.Constructor
 
@@ -10,6 +10,7 @@ import java.lang.reflect.Constructor
  */
 abstract class BaseGenerator {
 
+    protected Logger logger = LoggerFactory.getLogger(getClass())
 
     public BaseGenerator(){
 

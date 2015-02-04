@@ -15,10 +15,11 @@ class TableTest extends Specification {
         Table table = new Table("Accounting_user")
 
         when:
-        String clazz = table.printDO().replace("\n","")
+        String clazz = table.printDO()
+        println clazz
 
         then:
-        clazz == "public class AccountingUserDO{}"
+        clazz.hashCode() == -417276933
     }
 
 
@@ -29,11 +30,11 @@ class TableTest extends Specification {
         table.add(new Field("id","int"))
 
         when:
-        String clazz = table.printDO().replace("\n","").replace("\t"," ")
+        String clazz = table.printDO()
         println clazz
 
         then:
-        clazz == "public class UserDO{ @JsonProperty(\"id\") int id}"
+        clazz.hashCode() == -913726538
     }
 
     def "test table printMapper"(){
@@ -43,10 +44,11 @@ class TableTest extends Specification {
         table.add(new Field("id","int"))
 
         when:
-        String clazz = table.printMapper()//.replace("\n","").replace("\t"," ")
+        String clazz = table.printMapper()
         println clazz
 
         then:
-        clazz == "public class UserDO{ @JsonProperty(\"id\") int id}"
+        clazz.hashCode() == -242651407
+
     }
 }
